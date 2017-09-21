@@ -44,6 +44,7 @@ const Bananswers = [
     "Nope",
     "Go for it",
     "If you're still not sure, then just don't",
+    "Speak louder",
     "I love you"
 ];
 
@@ -73,7 +74,7 @@ export default class Home extends Component {
 
   nextBananswer(index, bananswerIndex) {
     const min = 1;
-    const max = 23;
+    const max = 24;
     let newIndex = 0;
     console.log('nextBananswer');
     console.log('index: ' + index);
