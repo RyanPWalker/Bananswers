@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { AppLoading } from 'expo';
+import { StyleSheet, Text, View, Dimensions, NetInfo, Platform } from 'react-native';
+import { AppLoading, FacebookAds } from 'expo';
 import Home from "./src/Home.js";
 import cacheAssetsAsync from './cacheAssetsAsync';
+import AdBanner from './src/AdBanner';
+const ads = require('./assets/config.json');
+
+let adType = 'standard';
+
+if (Dimensions.get('window').width > 600) {
+  adType = 'large';
+}
+
+FacebookAds.AdSettings.addTestDevice(FacebookAds.AdSettings.currentDeviceHash);
 
 export default class App extends Component {
   state = {
-    appIsReady: false
+    appIsReady: false,
+    online: false,
   }
 
   componentWillMount() {
     this.loadAssetsAsync();
+  }
+
+  componentDidMount() {
+    NetInfo.addEventListener('connectionChange', (connectionInfo) => {
+      this.setState({ online: connectionInfo.type !== 'none' });
+    });
   }
 
   async loadAssetsAsync() {
@@ -19,6 +36,7 @@ export default class App extends Component {
         images: [
           require('./assets/images/Banana-Unpeeled.png'),
           require('./assets/images/Banana-Peeled.png'),
+          require('./assets/images/logo.png'),
         ]
       });
     } catch (e) {
@@ -33,13 +51,18 @@ export default class App extends Component {
 
   render() {
     if (!this.state.appIsReady) {
-      console.log('Not reading');
       return (<AppLoading />);
     }
 
     return (
       <View style={styles.container}>
         <Home />
+        <AdBanner
+          id={Platform.OS === 'ios' ? ads.ios : ads.android}
+          style={styles.ad}
+          online={this.state.online}
+          type={adType}
+        />
       </View>
     );
   }
@@ -50,5 +73,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  ad: {
+    bottom: 20,
+    height: 40,
   },
 });

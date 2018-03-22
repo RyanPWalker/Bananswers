@@ -70,6 +70,9 @@ export default class Home extends PureComponent {
 
     return (
       <View style={styles.container}>
+      	<Image source={require('../assets/images/logo.png')}
+    			style={styles.logo}
+    		/>
         <View style={styles.empty} />
           <TouchableWithoutFeedback
             onPress={this.nextImage}
@@ -84,6 +87,11 @@ export default class Home extends PureComponent {
           </TouchableWithoutFeedback>
           <Bananswer bananswerIndex={bananswerIndex} done={done} />
         <View style={styles.empty} />
+        {/*<View style={styles.tabBarInfoContainer}>
+                  <Text style={styles.tabBarInfoText}>
+                    Put adds here?
+                  </Text>
+                </View>*/}
       </View>
     );
   }
@@ -91,10 +99,15 @@ export default class Home extends PureComponent {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
+    logo: {
+    	flex: 1,
+      alignSelf: 'stretch',
+	    resizeMode: 'contain',
+  	},
     image: {
         flex: 2,
         width: 320,
