@@ -4,10 +4,12 @@ import {
   StyleSheet,
   View,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Dimensions
 } from 'react-native';
 import Bananswer from './Bananswer';
 
+const win = Dimensions.get('window');
 const Images = [
     {
         uri: require('../assets/images/Banana-Unpeeled.png'),
@@ -106,7 +108,9 @@ const styles = StyleSheet.create({
     logo: {
     	flex: 1,
       alignSelf: 'stretch',
-	    resizeMode: 'contain',
+      width: win.width,
+      height: win.height,
+      marginTop: '20%',
   	},
     image: {
         flex: 2,
