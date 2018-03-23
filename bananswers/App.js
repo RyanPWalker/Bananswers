@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ad: {
+    position: 'absolute',
     bottom: 20,
     height: 40,
   },
