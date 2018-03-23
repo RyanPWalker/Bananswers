@@ -58,7 +58,7 @@ export default class App extends Component {
       <View style={styles.container}>
         <Home />
         <AdBanner
-          id={Platform.OS === 'ios' ? ads.ios : ads.android}
+          id={Platform.OS === 'ios' ? ads.facebook.ios : ads.facebook.android}
           style={styles.ad}
           online={this.state.online}
           type={adType}
@@ -71,11 +71,10 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   ad: {
     position: 'absolute',
+    width: '100%',
     bottom: 20,
     height: 40,
   },
