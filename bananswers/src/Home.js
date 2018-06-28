@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 import {
   AppRegistry,
   StyleSheet,
@@ -6,38 +6,40 @@ import {
   Image,
   TouchableWithoutFeedback,
   Dimensions
-} from 'react-native';
-import Bananswer from './Bananswer';
+} from "react-native";
+import Bananswer from "./Bananswer";
 
-const win = Dimensions.get('window');
+const win = Dimensions.get("window");
 const Images = [
-    {
-        uri: require('../assets/images/Banana-Unpeeled.png'),
-        label: "Ask me a yes or no question"
-    },
+  {
+    uri: require("../assets/images/Banana-Unpeeled.png"),
+    label: "Ask me a yes or no question"
+  },
 
-    {
-        uri: require('../assets/images/Banana-Peeled.png'),
-        label: "Yes"
-    }
+  {
+    uri: require("../assets/images/Banana-Peeled.png"),
+    label: "Yes"
+  }
 ];
 
 export default class Home extends PureComponent {
-	state = {
+  state = {
     index: 0,
     bananswerIndex: 0,
     imageWidth: null,
-    done: false,
-  }
+    done: false
+  };
 
-  nextImage = (event) => {
+  nextImage = event => {
     const { index } = this.state;
     let newIndex = 0;
 
-    if (index === 0) { newIndex = 1; }
+    if (index === 0) {
+      newIndex = 1;
+    }
 
     this.nextBananswer(newIndex);
-  }
+  };
 
   nextBananswer(index) {
     const min = 1;
@@ -51,20 +53,19 @@ export default class Home extends PureComponent {
     this.setState({
       bananswerIndex: newIndex,
       index,
-      done: false,
+      done: false
     });
-
   }
 
-  onImageLayout = (event) => {
+  onImageLayout = event => {
     this.setState({
       imageWidth: event.nativeEvent.layout.width
     });
-  }
+  };
 
   handleLoad = () => {
     this.setState({ done: true });
-  }
+  };
 
   render() {
     const { index, bananswerIndex, done } = this.state;
@@ -72,22 +73,20 @@ export default class Home extends PureComponent {
 
     return (
       <View style={styles.container}>
-      	<Image source={require('../assets/images/logo2.png')}
-    			style={styles.logo}
-    		/>
+        <Image
+          source={require("../assets/images/logo2.png")}
+          style={styles.logo}
+        />
         <View style={styles.empty} />
-          <TouchableWithoutFeedback
-            onPress={this.nextImage}
+        <TouchableWithoutFeedback onPress={this.nextImage} style={styles.image}>
+          <Image
+            source={image.uri}
             style={styles.image}
-          >
-            <Image
-              source={image.uri}
-              style={styles.image}
-              onLayout={this.onImageLayout}
-              onLoad={this.handleLoad}
-            />
-          </TouchableWithoutFeedback>
-          <Bananswer bananswerIndex={bananswerIndex} done={done} />
+            onLayout={this.onImageLayout}
+            onLoad={this.handleLoad}
+          />
+        </TouchableWithoutFeedback>
+        <Bananswer bananswerIndex={bananswerIndex} done={done} />
         <View style={styles.empty} />
         {/*<View style={styles.tabBarInfoContainer}>
                   <Text style={styles.tabBarInfoText}>
@@ -100,27 +99,29 @@ export default class Home extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    logo: {
-    	flex: 1,
-      alignSelf: 'stretch',
-      width: win.width,
-      height: win.height,
-      marginTop: '20%',
-  	},
-    image: {
-        flex: 2,
-        width: 320,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
-    },
-    empty: {
-        flex: 1
-    }
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  logo: {
+    flex: 1,
+    alignSelf: "stretch",
+    width: win.width,
+    height: win.height,
+    marginTop: "20%",
+    zIndex: 1
+  },
+  image: {
+    flex: 2,
+    width: 320,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    zIndex: 0
+  },
+  empty: {
+    flex: 0.5
+  }
 });
 
-AppRegistry.registerComponent('Bananswers', () => bananswers);
+AppRegistry.registerComponent("Bananswers", () => bananswers);

@@ -1,14 +1,14 @@
 {
   "name": "bananswers",
   "version": "0.0.0",
-  "description": "Hello Expo!",
-  "author": null,
+  "description": "An awesome bananApp that will solve all of life's unapeeling dilemmas.",
+  "author": "Ryan Walker",
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
-    "expo": "^20.0.0",
-    "react": "16.0.0-alpha.12",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-20.0.0.tar.gz"
+    "expo": "^27.0.0",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz"
   },
   "devDependencies": {}
 }

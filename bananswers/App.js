@@ -7,12 +7,13 @@ import AdBanner from './src/AdBanner';
 const ads = require('./assets/config.json');
 
 let adType = 'standard';
+const ios = Platform.OS === 'ios';
 
 if (Dimensions.get('window').width > 600) {
   adType = 'large';
 }
 
-FacebookAds.AdSettings.addTestDevice(FacebookAds.AdSettings.currentDeviceHash);
+//FacebookAds.AdSettings.addTestDevice(FacebookAds.AdSettings.currentDeviceHash);
 
 export default class App extends Component {
   state = {
@@ -75,7 +76,8 @@ const styles = StyleSheet.create({
   ad: {
     position: 'absolute',
     width: '100%',
-    bottom: 20,
+    left: 0,
+    bottom: ios ? 20 : 0,
     height: 40,
   },
 });
